@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-console */
 import './style.css';
 
@@ -14,9 +15,81 @@ async function getWeather(location: string) {
   return response.json();
 }
 
-function displayWeather(weatherData: string) {
+function formatDate(inputDate: string) {
+  // Parse the input string date
+  const date = new Date(inputDate);
+
+  // Define arrays for day names and month names
+  const daysOfWeek = [
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+  ];
+  const monthsOfYear = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
+
+  // Extract day, month, year, hour, and minute
+  const dayOfWeek = daysOfWeek[date.getDay()];
+  const month = monthsOfYear[date.getMonth()];
+  const day = date.getDate();
+  const year = date.getFullYear();
+  let hour = date.getHours();
+  const minute = date.getMinutes();
+  const period = hour >= 12 ? 'PM' : 'AM';
+
+  // Convert hour to 12-hour format
+  hour = hour % 12 || 12;
+
+  // Format the date string
+  const formattedDate = `${dayOfWeek} ${month} ${day}, ${year} at ${hour}:${minute.toString().padStart(2, '0')} ${period}`;
+
+  return formattedDate;
+}
+
+function displayWeather(weatherData: any) {
   // Add code here to display weather data on the UI
-  // do humidity, temp, location, etc
+  const currentWeather = weatherData.current;
+  const weatherLocation = weatherData.location;
+  // get location first weatherlocation.name & region
+  console.log(weatherLocation.name);
+  if (weatherLocation.country === 'United States of America') {
+    console.log(weatherLocation.region);
+  } else {
+    console.log(weatherLocation.country);
+  }
+  // day
+  const currentDate = formatDate(currentWeather.last_updated);
+  console.log(currentDate);
+  // current condition currentWeather.condition.text with giphy api
+  console.log(currentWeather.condition.text);
+  // temp
+  console.log(`${currentWeather.temp_f}degreesymbol f`);
+  // feels like f
+  console.log(`feels like ${currentWeather.feelslike_f}degreesymbol f`);
+  // humidity
+  console.log(`${currentWeather.humidity}%`);
+  // cloudiness
+  console.log(`${currentWeather.cloud}%`);
+  // wind
+  console.log(`${currentWeather.wind_mph}mph`);
+  // uv
+  console.log(currentWeather.uv);
   console.log(weatherData);
 }
 
