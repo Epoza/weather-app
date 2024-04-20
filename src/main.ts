@@ -4,6 +4,18 @@ import './style.css';
 
 const searchBtn = document.getElementById('searchBtn');
 
+// Get elements to display weather
+
+const locationName = document.getElementById('locationNameText');
+const locationRegion = document.getElementById('locationRegionText');
+const condition = document.getElementById('conditionText');
+const tempF = document.getElementById('tempFText');
+const tempFFeels = document.getElementById('tempFFeelsText');
+const humidity = document.getElementById('humidityText');
+const cloudiness = document.getElementById('cloudinessText');
+const wind = document.getElementById('windText');
+const uv = document.getElementById('uvText');
+
 const API_KEY = '8192c09f7e2f410bb9b195056240704';
 const BASE_URL = 'http://api.weatherapi.com/v1/current.json';
 
@@ -68,28 +80,37 @@ function displayWeather(weatherData: any) {
   const weatherLocation = weatherData.location;
   // get location first weatherlocation.name & region
   console.log(weatherLocation.name);
-  if (weatherLocation.country === 'United States of America') {
-    console.log(weatherLocation.region);
-  } else {
-    console.log(weatherLocation.country);
-  }
+  locationName!.innerText = weatherLocation.name;
+  // Display state if USA else display country
+  locationRegion!.innerText =
+    weatherLocation.country === 'United States of America'
+      ? weatherLocation.region
+      : weatherLocation.country;
+
   // day
   const currentDate = formatDate(currentWeather.last_updated);
   console.log(currentDate);
   // current condition currentWeather.condition.text with giphy api
   console.log(currentWeather.condition.text);
+  condition!.innerText = currentWeather.condition.text;
   // temp
   console.log(`${currentWeather.temp_f}degreesymbol f`);
+  tempF!.innerText = `${currentWeather.temp_f}degreesymbol f`;
   // feels like f
   console.log(`feels like ${currentWeather.feelslike_f}degreesymbol f`);
+  tempFFeels!.innerText = `feels like ${currentWeather.feelslike_f}degreesymbol f`;
   // humidity
   console.log(`${currentWeather.humidity}%`);
+  humidity!.innerText = `${currentWeather.humidity}%`;
   // cloudiness
   console.log(`${currentWeather.cloud}%`);
+  cloudiness!.innerText = `${currentWeather.cloud}%`;
   // wind
   console.log(`${currentWeather.wind_mph}mph`);
+  wind!.innerText = `${currentWeather.wind_mph}mph`;
   // uv
   console.log(currentWeather.uv);
+  uv!.innerText = currentWeather.uv;
   console.log(weatherData);
 }
 
