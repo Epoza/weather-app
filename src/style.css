@@ -17,6 +17,10 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.weather_info {
+  @apply flex flex-col
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
