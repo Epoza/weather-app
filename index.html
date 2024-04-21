@@ -11,43 +11,49 @@
     <input type="text" id="locationSearch" placeholder="Enter your location" required>
     <button id="searchBtn">Enter</button>
     <!-- possibly put in container -->
-    <div class="location_name weather_info" id="locationName">
-      <label for="locationNameText">Location</label>
-      <span id="locationNameText"></span>
+    <div class="grid-container">
+      <div class="location-info" id="locationInfo">
+        <div class="location_name weather_info" id="locationName">
+          <label for="locationNameText">Location</label>
+          <span id="locationNameText"></span>
+        </div>
+        <div class="location_region weather_info" id="locationRegion">
+          <label for="locationRegionText">Region</label>
+          <span id="locationRegionText"></span>
+        </div>
+      </div>
+      <div class="other-info" id="otherInfo">
+        <div class="condition weather_info" id="condition">
+          <label for="conditionText">Condition</label>
+          <span id="conditionText"></span>
+        </div>
+        <div class="temp_f weather_info" id="tempF">
+          <label for="tempFText">Temperature (F)</label>
+          <span id="tempFText"></span>
+        </div>
+        <div class="temp_f_feels weather_info" id="tempFFeels">
+          <label for="tempFFeelsText">Feels Like (F)</label>
+          <span id="tempFFeelsText"></span>
+        </div>
+        <div class="humidity weather_info" id="humidity">
+          <label for="humidityText">Humidity</label>
+          <span id="humidityText"></span>
+        </div>
+        <div class="cloudiness weather_info" id="cloudiness">
+          <label for="cloudinessText">Cloudiness</label>
+          <span id="cloudinessText"></span>
+        </div>
+        <div class="wind weather_info" id="wind">
+          <label for="windText">Wind</label>
+          <span id="windText"></span>
+        </div>
+        <div class="uv weather_info" id="uv">
+          <label for="uvText">UV Index</label>
+          <span id="uvText"></span>
+        </div>
+      </div>
     </div>
-    <div class="location_region weather_info" id="locationRegion">
-      <label for="locationRegionText">Region</label>
-      <span id="locationRegionText"></span>
-    </div>
-    <div class="condition weather_info" id="condition">
-      <label for="conditionText">Condition</label>
-      <span id="conditionText"></span>
-    </div>
-    <div class="temp_f weather_info" id="tempF">
-      <label for="tempFText">Temperature (F)</label>
-      <span id="tempFText"></span>
-    </div>
-    <div class="temp_f_feels weather_info" id="tempFFeels">
-      <label for="tempFFeelsText">Feels Like (F)</label>
-      <span id="tempFFeelsText"></span>
-    </div>
-    <div class="humidity weather_info" id="humidity">
-      <label for="humidityText">Humidity</label>
-      <span id="humidityText"></span>
-    </div>    
-    <div class="cloudiness weather_info" id="cloudiness">
-      <label for="cloudinessText">Cloudiness</label>
-      <span id="cloudinessText"></span>
-    </div>
-    <div class="wind weather_info" id="wind">
-      <label for="windText">Wind</label>
-      <span id="windText"></span>
-    </div>
-    <div class="uv weather_info" id="uv">
-      <label for="uvText">UV Index</label>
-      <span id="uvText"></span>
-    </div>
-    
+
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
