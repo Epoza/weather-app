@@ -21,6 +21,33 @@
   @apply flex flex-col
 }
 
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.location-info {
+  grid-column: 1 / span 4;
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.other-info {
+  grid-column: 1 / span 4;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.weather_info {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
