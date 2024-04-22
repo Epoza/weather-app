@@ -16,6 +16,9 @@ const cloudiness = document.getElementById('cloudinessText');
 const wind = document.getElementById('windText');
 const uv = document.getElementById('uvText');
 
+// Dsiplay error messgae
+const errorMsg = document.getElementById('errorMessage');
+
 const API_KEY = '8192c09f7e2f410bb9b195056240704';
 const BASE_URL = 'http://api.weatherapi.com/v1/current.json';
 
@@ -94,11 +97,11 @@ function displayWeather(weatherData: any) {
   console.log(currentWeather.condition.text);
   condition!.innerText = currentWeather.condition.text;
   // temp
-  console.log(`${currentWeather.temp_f}degreesymbol f`);
-  tempF!.innerText = `${currentWeather.temp_f}degreesymbol f`;
+  console.log(`${currentWeather.temp_f}\u00B0F`);
+  tempF!.innerText = `${currentWeather.temp_f}\u00B0F`;
   // feels like f
-  console.log(`feels like ${currentWeather.feelslike_f}degreesymbol f`);
-  tempFFeels!.innerText = `feels like ${currentWeather.feelslike_f}degreesymbol f`;
+  console.log(`feels like ${currentWeather.feelslike_f}\u00B0F`);
+  tempFFeels!.innerText = `feels like ${currentWeather.feelslike_f}\u00B0F`;
   // humidity
   console.log(`${currentWeather.humidity}%`);
   humidity!.innerText = `${currentWeather.humidity}%`;
@@ -123,10 +126,13 @@ async function getNewLocation() {
   if (locationSearch) {
     const location = locationSearch.value.trim();
     try {
+      // Clear the error message
+      errorMsg!.innerText = '';
       const weatherData = await getWeather(location);
       displayWeather(weatherData);
     } catch (error) {
       console.error('Error fetching weather data:', error);
+      errorMsg!.innerText = `${error}`;
     }
   } else {
     // Handle the case when the element is not empty or not found
