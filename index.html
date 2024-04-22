@@ -7,9 +7,13 @@
     <title>Weather App</title>
   </head>
   <body>
-    <div class="text-red-500">Weather App</div>
-    <input type="text" id="locationSearch" placeholder="Enter your location" required>
-    <button id="searchBtn">Enter</button>
+    <div id="headerContainer">
+      <header class="text-red-500">Weather App</header>
+      <input type="text" id="locationSearch" placeholder="Enter your location" maxlength="25" required>
+      <button id="searchBtn">Enter</button>
+      <div id="errorMessage"></div>
+    </div>
+    
     <!-- possibly put in container -->
     <div class="grid-container">
       <div class="location-info" id="locationInfo">
