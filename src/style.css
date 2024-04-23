@@ -27,7 +27,7 @@
 }
 
 #locationSearch {
-  border: 2px solid white;
+  border: 2px solid lightblue;
   border-radius: 20px;
   padding-left: 5px;
 }
@@ -60,7 +60,8 @@
 }
 
 .weather_info {
-  border: 1px solid #ccc;
+  color: #d4eefb;
+  border: 1px solid lightblue;
   padding: 10px;
 }
 
