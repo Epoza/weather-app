@@ -16,8 +16,15 @@ const cloudiness = document.getElementById('cloudinessText');
 const wind = document.getElementById('windText');
 const uv = document.getElementById('uvText');
 
+// img elements to display gifs
+const conditionGif = document.getElementById(
+  'conditionGif'
+) as HTMLImageElement;
+
 // Dsiplay error messgae
 const errorMsg = document.getElementById('errorMessage');
+
+// Weather API
 
 const API_KEY = '8192c09f7e2f410bb9b195056240704';
 const BASE_URL = 'http://api.weatherapi.com/v1/current.json';
@@ -77,6 +84,17 @@ function formatDate(inputDate: string) {
   return formattedDate;
 }
 
+async function addGif(weatherInfo: string, elementGif: HTMLImageElement) {
+  // Giphy API
+  const GIPHY_API_KEY = 'R7TClJx1SA3kTAtDof1rJ8tCNC3ftbvP';
+  const GIPHY_URL = `https://api.giphy.com/v1/gifs/translate?api_key=${GIPHY_API_KEY}&s=${weatherInfo}`;
+  console.log(weatherInfo);
+  // uses the weather info to display a gif to the selected img element
+  const response = await fetch(GIPHY_URL, { mode: 'cors' });
+  const responseData = await response.json();
+  elementGif!.src = responseData.data.images.original.url;
+}
+
 function displayWeather(weatherData: any) {
   // Add code here to display weather data on the UI
   const currentWeather = weatherData.current;
@@ -96,6 +114,7 @@ function displayWeather(weatherData: any) {
   // current condition currentWeather.condition.text with giphy api
   console.log(currentWeather.condition.text);
   condition!.innerText = currentWeather.condition.text;
+  addGif(currentWeather.condition.text, conditionGif);
   // temp
   console.log(`${currentWeather.temp_f}\u00B0F`);
   tempF!.innerText = `${currentWeather.temp_f}\u00B0F`;
