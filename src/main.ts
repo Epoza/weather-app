@@ -20,6 +20,7 @@ const uv = document.getElementById('uvText');
 const conditionGif = document.getElementById(
   'conditionGif'
 ) as HTMLImageElement;
+const tempGif = document.getElementById('tempFGif') as HTMLImageElement;
 
 // Dsiplay error messgae
 const errorMsg = document.getElementById('errorMessage');
@@ -111,13 +112,29 @@ function displayWeather(weatherData: any) {
   // day
   const currentDate = formatDate(currentWeather.last_updated);
   console.log(currentDate);
-  // current condition currentWeather.condition.text with giphy api
+  // current condition
   console.log(currentWeather.condition.text);
   condition!.innerText = currentWeather.condition.text;
   addGif(currentWeather.condition.text, conditionGif);
   // temp
   console.log(`${currentWeather.temp_f}\u00B0F`);
   tempF!.innerText = `${currentWeather.temp_f}\u00B0F`;
+  addGif(currentWeather.temp_f, conditionGif);
+  // convert the given temperature to text
+  let tempGifText = '';
+  if (currentWeather.temp_f <= 0) {
+    tempGifText = 'Freezing';
+  } else if (currentWeather.temp_f <= 32) {
+    tempGifText = 'Cold';
+  } else if (currentWeather.temp_f <= 50) {
+    tempGifText = 'Chilly';
+  } else if (currentWeather.temp_f <= 65) {
+    tempGifText = 'Warm';
+  } else {
+    tempGifText = 'Hot';
+  }
+  console.log(tempGif);
+  addGif(tempGifText, tempGif);
   // feels like f
   console.log(`feels like ${currentWeather.feelslike_f}\u00B0F`);
   tempFFeels!.innerText = `feels like ${currentWeather.feelslike_f}\u00B0F`;
